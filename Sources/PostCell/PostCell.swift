@@ -2,14 +2,16 @@ import UIKit
 
 class PostCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet var postTitleLabel: UILabel!
+    @IBOutlet var postTextLabel: UILabel!
 
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//
+//    }
+
+    func configure(with post: PostModel) {
+        postTitleLabel.text = post.title
+        postTextLabel.text = post.text
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-    
 }
