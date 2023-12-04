@@ -1,6 +1,6 @@
 import Foundation
 
-final class ArticleDetailViewModel {
+final class DetailPostViewModel {
 
     enum State {
         case loading
@@ -8,5 +8,6 @@ final class ArticleDetailViewModel {
     }
 
     var state: State = .loading
+    private let networkService = NetworkService()
 
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class PostsViewController: UITableViewController, PostsViewModelDeledate {
+final class PostsViewController: UITableViewController, PostsViewModelDeledate {
 
     let viewModel = PostsViewModel()
 
@@ -43,7 +43,8 @@ extension PostsViewController {
         let storyboard = UIStoryboard(name: "PostStoryboard", bundle: nil)
         let postVC = storyboard.instantiateViewController(withIdentifier: "Post") as! DetailPostViewController
         let selectedPost = viewModel.posts[indexPath.row]
-        viewModel.loadPost(id: selectedPost.id)
+//        viewModel.loadPost(id: selectedPost.id)
+        postVC.postTitleLabel.text = selectedPost.title
 
         navigationController?.pushViewController(postVC, animated: true)
     }
