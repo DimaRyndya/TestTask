@@ -40,11 +40,16 @@ extension PostsViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPost = viewModel.posts[indexPath.row]
+
         let storyboard = UIStoryboard(name: "PostStoryboard", bundle: nil)
         let postVC = storyboard.instantiateViewController(withIdentifier: "Post") as! DetailPostViewController
-        let selectedPost = viewModel.posts[indexPath.row]
-//        viewModel.loadPost(id: selectedPost.id)
-        postVC.postTitleLabel.text = selectedPost.title
+
+        postVC.viewModel.changeUIForState = { [weak postVC] state in
+            postVC?.changeUI(for: state)
+        }
+        postVC.viewModel.loadPost(id: selectedPost.id)
+        postVC.viewModel.postTitle = selectedPost.title
 
         navigationController?.pushViewController(postVC, animated: true)
     }

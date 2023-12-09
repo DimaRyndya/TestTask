@@ -24,6 +24,7 @@
 		1D5AA16E2ACC7DCA005CF9C5 /* PostsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5AA16C2ACC7DCA005CF9C5 /* PostsStoryboard.storyboard */; };
 		1D5AA1702ACC7DCB005CF9C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5AA16F2ACC7DCB005CF9C5 /* Assets.xcassets */; };
 		1D5AA1732ACC7DCB005CF9C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D5AA1712ACC7DCB005CF9C5 /* LaunchScreen.storyboard */; };
+		1D6B75892B2112CD0087DED7 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B75882B2112CD0087DED7 /* SpinnerView.swift */; };
 		1DC54EF42ACDF2CF002D4249 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC54EF22ACDF2CF002D4249 /* PostCell.swift */; };
 		1DC54EF52ACDF2CF002D4249 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC54EF32ACDF2CF002D4249 /* PostCell.xib */; };
 		7E5B5D238D8710EA25FFB9BA /* Pods_TestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9AC8FD66B8B158C013425C /* Pods_TestTask.framework */; };
@@ -49,6 +50,7 @@
 		1D5AA16F2ACC7DCB005CF9C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D5AA1722ACC7DCB005CF9C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D5AA1742ACC7DCB005CF9C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D6B75882B2112CD0087DED7 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		1DC54EF22ACDF2CF002D4249 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		1DC54EF32ACDF2CF002D4249 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		DFE587E8EF8E2413E1CB4547 /* Pods-TestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTask.release.xcconfig"; path = "Target Support Files/Pods-TestTask/Pods-TestTask.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				1D3C5CCE2B13C12E009FB46C /* SpinnerView.xib */,
+				1D6B75882B2112CD0087DED7 /* SpinnerView.swift */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -240,7 +243,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					1D5AA1622ACC7DCA005CF9C5 = {
 						CreatedOnToolsVersion = 14.2;
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D43AA212ADD9629007ED903 /* DetailPostViewController.swift in Sources */,
+				1D6B75892B2112CD0087DED7 /* SpinnerView.swift in Sources */,
 				1D43AA2A2ADDAB89007ED903 /* DetailPostModel.swift in Sources */,
 				1D43AA2E2AE5A182007ED903 /* DetailPostViewModel.swift in Sources */,
 				1D5AA16B2ACC7DCA005CF9C5 /* PostsViewController.swift in Sources */,
@@ -370,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -402,6 +407,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -430,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -462,6 +469,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -489,6 +497,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CHL34W9FC3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -522,6 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CHL34W9FC3;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
