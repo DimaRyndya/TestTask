@@ -13,7 +13,7 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
         tableView.register(nib, forCellReuseIdentifier: "PostCell")
 
         viewModel.delegate = self
-        viewModel.loadPosts()
+        viewModel.viewDidLoad()
     }
 
     func reloadUI() {
@@ -55,4 +55,3 @@ extension PostsViewController {
     }
 
 }
-

@@ -11,7 +11,7 @@ final class PostsViewModel {
 
     weak var delegate: PostsViewModelDeledate?
 
-    func loadPosts() {
+    func viewDidLoad() {
         networkService.fetchPosts { [weak self] response in
             guard let self else { return }
             self.posts = response

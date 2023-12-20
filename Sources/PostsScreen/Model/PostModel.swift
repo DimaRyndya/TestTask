@@ -5,6 +5,8 @@ struct PostModel {
     let id: Int
     let title: String
     let text: String
+    let likes: Int
+    let timeStamp: Int
 }
 
 extension PostModel: Decodable {
@@ -13,5 +15,7 @@ extension PostModel: Decodable {
         case title
         case id = "postId"
         case text = "preview_text"
+        case likes = "likes_count"
+        case timeStamp = "timeshamp"
     }
 }

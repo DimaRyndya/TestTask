@@ -6,6 +6,7 @@ final class DetailPostViewController: UIViewController {
     @IBOutlet var postTitleLabel: UILabel!
     @IBOutlet var postTextLabel: UILabel!
 
+
     let viewModel = DetailPostViewModel()
     let spinnerView = Bundle.main.loadNibNamed("SpinnerView", owner: DetailPostViewController.self, options: nil)![0] as? SpinnerView
 

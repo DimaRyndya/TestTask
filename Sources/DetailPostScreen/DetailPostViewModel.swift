@@ -14,6 +14,7 @@ final class DetailPostViewModel {
     var postTitle = ""
     var postText = ""
     var imageURL = ""
+    var postLikes = ""
 
     func changeState(for newState: State) {
         self.state = newState
