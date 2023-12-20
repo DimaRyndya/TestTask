@@ -50,6 +50,8 @@ extension PostsViewController {
         }
         postVC.viewModel.loadPost(id: selectedPost.id)
         postVC.viewModel.postTitle = selectedPost.title
+        postVC.viewModel.postLikes = String(selectedPost.likes)
+        postVC.viewModel.timestamp = selectedPost.timeStamp
 
         navigationController?.pushViewController(postVC, animated: true)
     }

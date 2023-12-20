@@ -5,6 +5,8 @@ final class DetailPostViewController: UIViewController {
     @IBOutlet var postImageView: UIImageView!
     @IBOutlet var postTitleLabel: UILabel!
     @IBOutlet var postTextLabel: UILabel!
+    @IBOutlet var postLikesLabel: UILabel!
+    @IBOutlet var postDateLabel: UILabel!
 
 
     let viewModel = DetailPostViewModel()
@@ -20,9 +22,11 @@ final class DetailPostViewController: UIViewController {
         case .loading:
             view.addSubview(spinnerView ?? UIView())
         case .foundPost:
+            postImageView.loadImage(url: viewModel.imageURL)
             postTitleLabel.text = viewModel.postTitle
             postTextLabel.text = viewModel.postText
-            postImageView.loadImage(url: viewModel.imageURL)
+            postLikesLabel.text = viewModel.postLikes
+            postDateLabel.text = viewModel.getPostdate()
             spinnerView?.removeFromSuperview()
         }
     }

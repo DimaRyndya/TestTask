@@ -15,6 +15,7 @@ final class DetailPostViewModel {
     var postText = ""
     var imageURL = ""
     var postLikes = ""
+    var timestamp = 0
 
     func changeState(for newState: State) {
         self.state = newState
@@ -32,5 +33,16 @@ final class DetailPostViewModel {
                 changeUIForState?(.foundPost)
             }
         }
+    }
+
+    func getPostdate() -> String {
+        let formatter = DateFormatter()
+        let timeInterval = TimeInterval(timestamp)
+        let dateFromTimestamp = Date(timeIntervalSince1970: timeInterval)
+        
+        formatter.dateFormat = "dd MMMM yyyy"
+
+        let stringDate = formatter.string(from: dateFromTimestamp)
+        return stringDate
     }
 }
