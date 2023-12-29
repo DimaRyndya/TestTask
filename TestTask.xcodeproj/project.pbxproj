@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3754AE2B3DDF2800DC1060 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3754AD2B3DDF2800DC1060 /* UILabel.swift */; };
 		1D3C5CCF2B13C12E009FB46C /* SpinnerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D3C5CCE2B13C12E009FB46C /* SpinnerView.xib */; };
 		1D43AA212ADD9629007ED903 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D43AA202ADD9629007ED903 /* DetailPostViewController.swift */; };
 		1D43AA262ADD9FDA007ED903 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D43AA252ADD9FDA007ED903 /* UIImageView.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D3754AD2B3DDF2800DC1060 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		1D3C5CCE2B13C12E009FB46C /* SpinnerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpinnerView.xib; sourceTree = "<group>"; };
 		1D43AA202ADD9629007ED903 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		1D43AA252ADD9FDA007ED903 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				1D43AA252ADD9FDA007ED903 /* UIImageView.swift */,
+				1D3754AD2B3DDF2800DC1060 /* UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				1D43AA262ADD9FDA007ED903 /* UIImageView.swift in Sources */,
 				1D4C73AE2AD4870800E07768 /* PostModel.swift in Sources */,
 				1D43AA2C2ADDB25E007ED903 /* DetailPostRequestResponse.swift in Sources */,
+				1D3754AE2B3DDF2800DC1060 /* UILabel.swift in Sources */,
 				1D5AA1692ACC7DCA005CF9C5 /* SceneDelegate.swift in Sources */,
 				1DC54EF42ACDF2CF002D4249 /* PostCell.swift in Sources */,
 				1D4C73B22AD4930200E07768 /* PostsRequestResponse.swift in Sources */,

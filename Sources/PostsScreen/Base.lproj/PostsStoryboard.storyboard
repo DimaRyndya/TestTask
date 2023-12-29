@@ -21,7 +21,9 @@
                             <outlet property="delegate" destination="hHy-xW-N90" id="Bh8-BX-kUZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Posts" id="Un7-lz-j2W"/>
+                    <navigationItem key="navigationItem" title="Posts" id="Un7-lz-j2W">
+                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal.decrease.circle" catalog="system" id="U9c-lu-jqr"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYj-J7-6gB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,6 +49,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="line.3.horizontal.decrease.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

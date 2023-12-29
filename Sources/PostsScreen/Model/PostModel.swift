@@ -1,12 +1,13 @@
 import Foundation
 import UIKit
 
-struct PostModel {
+final class PostModel {
     let id: Int
     let title: String
     let text: String
     let likes: Int
     let timeStamp: Int
+    var isTruncated = false
 }
 
 extension PostModel: Decodable {

@@ -1,14 +1,12 @@
 import Foundation
 
 final class DetailPostViewModel {
-
+    
     enum State {
         case loading
         case foundPost
     }
-
-    var changeUIForState: ((State) -> Void)?
-    var detailPost: DetailPostModel?
+    
     private var state: State = .loading
     private let networkService = NetworkService()
     var postTitle = ""
@@ -16,12 +14,14 @@ final class DetailPostViewModel {
     var imageURL = ""
     var postLikes = ""
     var timestamp = 0
-
+    var changeUIForState: ((State) -> Void)?
+    var detailPost: DetailPostModel?
+    
     func changeState(for newState: State) {
         self.state = newState
         changeUIForState?(newState)
     }
-
+    
     func loadPost(id: Int) {
         changeUIForState?(.loading)
         networkService.fetchPost(with: id) { [weak self] response in
@@ -34,14 +34,14 @@ final class DetailPostViewModel {
             }
         }
     }
-
+    
     func getPostdate() -> String {
         let formatter = DateFormatter()
         let timeInterval = TimeInterval(timestamp)
         let dateFromTimestamp = Date(timeIntervalSince1970: timeInterval)
         
         formatter.dateFormat = "dd MMMM yyyy"
-
+        
         let stringDate = formatter.string(from: dateFromTimestamp)
         return stringDate
     }
