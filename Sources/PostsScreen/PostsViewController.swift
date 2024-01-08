@@ -7,8 +7,6 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
 
@@ -22,11 +20,18 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     func reloadUI() {
         tableView.reloadData()
     }
+}
 
-    func expandCell(at indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+extension PostsViewController: PostCellDelegate {
+
+    func postCellDidChangeHeight(_ cell: PostCell) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+
+//        tableView.beginUpdates()
+//        tableView.endUpdates()
     }
-
 }
 
 extension PostsViewController {
@@ -43,7 +48,8 @@ extension PostsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell ?? PostCell()
         let post = viewModel.posts[indexPath.row]
         cell.configure(with: post)
-        
+        cell.delegate = self
+
         return cell
     }
 
@@ -58,9 +64,8 @@ extension PostsViewController {
         postVC.viewModel.loadPost(id: selectedPost.id)
         postVC.viewModel.postTitle = selectedPost.title
         postVC.viewModel.postLikes = String(selectedPost.likes)
-        postVC.viewModel.timestamp = selectedPost.timeStamp
+        postVC.viewModel.timestamp = selectedPost.timestamp
 
         navigationController?.pushViewController(postVC, animated: true)
     }
-
 }

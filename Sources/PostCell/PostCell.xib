@@ -49,16 +49,16 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="s5D-bS-36n">
-                        <rect key="frame" x="275.66666666666669" y="72" width="66.333333333333314" height="14.333333333333329"/>
+                        <rect key="frame" x="275.66666666666669" y="72" width="66.333333333333314" height="15"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1u4-6D-55F">
-                                <rect key="frame" x="0.0" y="0.0" width="13.333333333333334" height="14.333333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="13.333333333333334" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="days ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqf-fS-dCB">
-                                <rect key="frame" x="15.333333333333314" y="0.0" width="51" height="14.333333333333334"/>
+                                <rect key="frame" x="15.333333333333314" y="0.0" width="51" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -66,8 +66,11 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAb-yw-cmt">
-                        <rect key="frame" x="16" y="121" width="326" height="34"/>
+                        <rect key="frame" x="16" y="112" width="326" height="43"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="43" id="yuP-OD-ulo"/>
+                        </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" title="Expand">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,11 +89,14 @@
                     <constraint firstItem="s5D-bS-36n" firstAttribute="top" secondItem="kk7-Sm-Ke0" secondAttribute="bottom" constant="10" id="E8J-po-skI"/>
                     <constraint firstAttribute="trailing" secondItem="IAb-yw-cmt" secondAttribute="trailing" constant="16" id="Eux-Jd-Ys3"/>
                     <constraint firstAttribute="trailing" secondItem="kk7-Sm-Ke0" secondAttribute="trailing" constant="16" id="Ft9-Ns-ylq"/>
+                    <constraint firstAttribute="bottom" secondItem="j0k-3a-iAh" secondAttribute="bottom" priority="250" constant="10" id="PzH-B5-m4U"/>
+                    <constraint firstItem="IAb-yw-cmt" firstAttribute="top" secondItem="s5D-bS-36n" secondAttribute="bottom" constant="25" id="Snq-CT-8OG"/>
                     <constraint firstAttribute="bottom" secondItem="IAb-yw-cmt" secondAttribute="bottom" constant="10" id="Z9D-aR-Vio"/>
                     <constraint firstItem="j0k-3a-iAh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="b3T-KE-pXP"/>
                     <constraint firstAttribute="trailing" secondItem="s5D-bS-36n" secondAttribute="trailing" constant="16" id="cqn-yc-eHP"/>
                     <constraint firstItem="f6x-b3-iuX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="inb-3X-Hwd"/>
-                    <constraint firstItem="IAb-yw-cmt" firstAttribute="top" secondItem="j0k-3a-iAh" secondAttribute="bottom" constant="34" id="mPl-w7-g6Z"/>
+                    <constraint firstItem="IAb-yw-cmt" firstAttribute="top" secondItem="j0k-3a-iAh" secondAttribute="bottom" constant="25" id="mPl-w7-g6Z"/>
+                    <constraint firstAttribute="bottom" secondItem="s5D-bS-36n" secondAttribute="bottom" priority="250" constant="10" id="qbZ-PE-ygB"/>
                     <constraint firstItem="IAb-yw-cmt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tJd-l9-jrL"/>
                 </constraints>
             </tableViewCellContentView>

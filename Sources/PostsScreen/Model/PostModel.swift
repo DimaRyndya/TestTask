@@ -6,8 +6,8 @@ final class PostModel {
     let title: String
     let text: String
     let likes: Int
-    let timeStamp: Int
-    var isTruncated = false
+    let timestamp: Int
+    var hasButton = true
 }
 
 extension PostModel: Decodable {
@@ -17,6 +17,6 @@ extension PostModel: Decodable {
         case id = "postId"
         case text = "preview_text"
         case likes = "likes_count"
-        case timeStamp = "timeshamp"
+        case timestamp = "timeshamp"
     }
 }
