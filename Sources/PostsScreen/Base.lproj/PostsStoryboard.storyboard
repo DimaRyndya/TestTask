@@ -24,6 +24,9 @@
                     <navigationItem key="navigationItem" title="Posts" id="Un7-lz-j2W">
                         <barButtonItem key="rightBarButtonItem" image="line.3.horizontal.decrease.circle" catalog="system" id="U9c-lu-jqr"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="menuButtonItem" destination="U9c-lu-jqr" id="vRx-Os-EdQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYj-J7-6gB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

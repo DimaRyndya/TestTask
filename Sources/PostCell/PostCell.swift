@@ -13,8 +13,10 @@ final class PostCell: UITableViewCell {
     @IBOutlet weak var postButton: UIButton!
 
     weak var delegate: PostCellDelegate?
+    var post: PostModel?
 
     func configure(with post: PostModel) {
+        self.post = post
         postTitleLabel.text = post.title
         postTextLabel.text = post.text
         postLikesLabel.text = String(post.likes)

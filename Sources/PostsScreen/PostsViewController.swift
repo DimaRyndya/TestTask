@@ -2,23 +2,40 @@ import UIKit
 
 final class PostsViewController: UITableViewController, PostsViewModelDeledate {
 
+    @IBOutlet weak var menuButtonItem: UIBarButtonItem!
+    
     let viewModel = PostsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
 
         let nib = UINib(nibName: "PostCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "PostCell")
 
+        configureButtonMenu()
         viewModel.delegate = self
         viewModel.viewDidLoad()
+
     }
 
     func reloadUI() {
         tableView.reloadData()
+    }
+
+    func configureButtonMenu() {
+        let firstAction = UIAction(title: "date") { _ in
+            self.viewModel.sortByDateTapped()
+        }
+
+        let secondAction = UIAction(title: "likes") { _ in
+            self.viewModel.sortByLikesTapped()
+        }
+
+        let menu = UIMenu(title: "Sort by:", children: [firstAction, secondAction])
+
+        menuButtonItem.menu = menu
     }
 }
 
