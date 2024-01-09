@@ -25,12 +25,12 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     }
 
     func configureButtonMenu() {
-        let firstAction = UIAction(title: "date") { _ in
-            self.viewModel.sortByDateTapped()
+        let firstAction = UIAction(title: "date") { [weak self] _ in
+            self?.viewModel.sortByDateTapped()
         }
 
-        let secondAction = UIAction(title: "likes") { _ in
-            self.viewModel.sortByLikesTapped()
+        let secondAction = UIAction(title: "likes") { [weak self] _ in
+            self?.viewModel.sortByLikesTapped()
         }
 
         let menu = UIMenu(title: "Sort by:", children: [firstAction, secondAction])
@@ -43,11 +43,8 @@ extension PostsViewController: PostCellDelegate {
 
     func postCellDidChangeHeight(_ cell: PostCell) {
         if let indexPath = tableView.indexPath(for: cell) {
-            tableView.reloadRows(at: [indexPath], with: .none)
+            tableView.reloadRows(at: [indexPath], with: .fade)
         }
-
-//        tableView.beginUpdates()
-//        tableView.endUpdates()
     }
 }
 
