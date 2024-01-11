@@ -2,9 +2,13 @@ import UIKit
 
 final class PostsViewController: UITableViewController, PostsViewModelDeledate {
 
+    // MARK: - Outlets
+
     @IBOutlet weak var menuButtonItem: UIBarButtonItem!
     
     let viewModel = PostsViewModel()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,21 +29,23 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     }
 
     func configureButtonMenu() {
-        let firstAction = UIAction(title: "date") { [weak self] _ in
+        let firstAction = UIAction(title: "date", image: UIImage(systemName: "arrow.up.arrow.down")) { [weak self] _ in
             self?.viewModel.sortByDateTapped()
         }
 
-        let secondAction = UIAction(title: "likes") { [weak self] _ in
+        let secondAction = UIAction(title: "likes", image: UIImage(systemName: "arrow.up.arrow.down")) { [weak self] _ in
             self?.viewModel.sortByLikesTapped()
         }
 
-        let menu = UIMenu(title: "Sort by:", children: [firstAction, secondAction])
+        let menu = UIMenu(children: [firstAction, secondAction])
 
         menuButtonItem.menu = menu
     }
 }
 
 extension PostsViewController: PostCellDelegate {
+
+    // MARK: - PostCell Delegate
 
     func postCellDidChangeHeight(_ cell: PostCell) {
         if let indexPath = tableView.indexPath(for: cell) {
@@ -49,6 +55,8 @@ extension PostsViewController: PostCellDelegate {
 }
 
 extension PostsViewController {
+
+    // MARK: - TableView Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -66,6 +74,8 @@ extension PostsViewController {
 
         return cell
     }
+
+    // MARK: - TableView Delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPost = viewModel.posts[indexPath.row]

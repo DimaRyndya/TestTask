@@ -5,12 +5,13 @@ protocol PostsViewModelDeledate: AnyObject {
 }
 
 final class PostsViewModel {
+
     var posts: [PostModel] = []
+    var isAscending = true
+
     private let networkService = NetworkService()
 
     weak var delegate: PostsViewModelDeledate?
-
-    var isAscending = true
 
     func viewDidLoad() {
         networkService.fetchPosts { [weak self] response in
@@ -23,32 +24,24 @@ final class PostsViewModel {
     func sortByDateTapped() {
         isAscending.toggle()
 
-        posts.sort { (firstItem, secondItem) in
-            let firstDate = firstItem.timestamp
-            let secondDate = secondItem.timestamp
-
-            if isAscending {
-                return firstDate < secondDate
-            } else {
-                return firstDate > secondDate
-            }
+        if isAscending {
+            posts.sort { $0.timestamp < $1.timestamp }
+        } else {
+            posts.sort { $0.timestamp > $1.timestamp }
         }
+
         delegate?.reloadUI()
     }
 
     func sortByLikesTapped() {
         isAscending.toggle()
 
-        posts.sort { (firstItem, secondItem) in
-            let firstPostLikes = firstItem.likes
-            let secondPostLikes = secondItem.likes
-
-            if isAscending {
-                return firstPostLikes < secondPostLikes
-            } else {
-                return firstPostLikes > secondPostLikes
-            }
+        if isAscending {
+            posts.sort { $0.likes < $1.likes }
+        } else {
+            posts.sort { $0.likes > $1.likes }
         }
+
         delegate?.reloadUI()
     }
 }

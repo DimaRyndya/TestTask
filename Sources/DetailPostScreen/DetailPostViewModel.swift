@@ -9,6 +9,7 @@ final class DetailPostViewModel {
     
     private var state: State = .loading
     private let networkService = NetworkService()
+    
     var postTitle = ""
     var postText = ""
     var imageURL = ""

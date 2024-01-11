@@ -5,7 +5,9 @@ protocol PostCellDelegate: AnyObject {
 }
 
 final class PostCell: UITableViewCell {
-    
+
+    // MARK: - Outlets
+
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postTextLabel: UILabel!
     @IBOutlet weak var postLikesLabel: UILabel!
@@ -24,9 +26,10 @@ final class PostCell: UITableViewCell {
         
         button.addAction(action, for: .primaryActionTriggered)
         button.backgroundColor = .gray
-        
+        button.layer.cornerRadius = 10
+
         NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: 30)
+            button.heightAnchor.constraint(equalToConstant: 35)
         ])
 
         return button
@@ -46,6 +49,8 @@ final class PostCell: UITableViewCell {
         postTextLabel.text = post.text
         postLikesLabel.text = String(post.likes)
         postTimeLabel.text = formatToDays(interval: post.timestamp)
+
+        print("\(postTitleLabel.text!)")
 
         if post.numberOfLines > 2 {
             expandableContentStackView.addArrangedSubview(expandButton)

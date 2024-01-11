@@ -1,6 +1,7 @@
 import Alamofire
 
 class NetworkService {
+    
     let baseURL = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/"
     let postsURL = "main.json"
 
