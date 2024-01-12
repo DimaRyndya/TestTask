@@ -21,25 +21,23 @@ final class PostsViewModel {
         }
     }
 
-    func sortByDateTapped() {
-        isAscending.toggle()
+    func sortByDateTapped(state: Bool) {
 
-        if isAscending {
-            posts.sort { $0.timestamp < $1.timestamp }
-        } else {
+        if state {
             posts.sort { $0.timestamp > $1.timestamp }
+        } else {
+            posts.sort { $0.timestamp < $1.timestamp }
         }
 
         delegate?.reloadUI()
     }
 
-    func sortByLikesTapped() {
-        isAscending.toggle()
+    func sortByLikesTapped(state: Bool) {
 
-        if isAscending {
-            posts.sort { $0.likes < $1.likes }
-        } else {
+        if state {
             posts.sort { $0.likes > $1.likes }
+        } else {
+            posts.sort { $0.likes < $1.likes }
         }
 
         delegate?.reloadUI()

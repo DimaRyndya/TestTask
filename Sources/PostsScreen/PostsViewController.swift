@@ -7,6 +7,8 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     @IBOutlet weak var menuButtonItem: UIBarButtonItem!
     
     let viewModel = PostsViewModel()
+    var isSelectedDates = false
+    var isSelectedLikes = false
 
     // MARK: - Lifecycle
 
@@ -29,17 +31,64 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     }
 
     func configureButtonMenu() {
-        let firstAction = UIAction(title: "date", image: UIImage(systemName: "arrow.up.arrow.down")) { [weak self] _ in
-            self?.viewModel.sortByDateTapped()
+        let newest = UIAction(title: "Newest First", image: UIImage(systemName: "arrow.up")) { [weak self] _ in
+            self?.isSelectedDates.toggle()
+            self?.updateUIForDateMenu()
+            self?.viewModel.sortByDateTapped(state: self!.isSelectedDates)
         }
 
-        let secondAction = UIAction(title: "likes", image: UIImage(systemName: "arrow.up.arrow.down")) { [weak self] _ in
-            self?.viewModel.sortByLikesTapped()
+        let oldest = UIAction(title: "Oldest First", image: UIImage(systemName: "arrow.down")) { [weak self] _ in
+            self?.isSelectedDates.toggle()
+            self?.updateUIForDateMenu()
+            self?.viewModel.sortByDateTapped(state: self!.isSelectedDates)
         }
 
-        let menu = UIMenu(children: [firstAction, secondAction])
+        let mostPopular = UIAction(title: "Most Popular", image: UIImage(systemName: "arrow.up")) { [weak self] _ in
+            self?.isSelectedLikes.toggle()
+            self?.updateUIForLikesMenu()
+            self?.viewModel.sortByLikesTapped(state: self!.isSelectedLikes)
+        }
 
-        menuButtonItem.menu = menu
+        let lessPopular = UIAction(title: "Less Popular", image: UIImage(systemName: "arrow.down")) { [weak self] _ in
+            self?.isSelectedLikes.toggle()
+            self?.updateUIForLikesMenu()
+            self?.viewModel.sortByLikesTapped(state: self!.isSelectedLikes)
+        }
+
+        let dateMenu = UIMenu(title: "Date", image: UIImage(systemName: "calendar"), children: [newest, oldest])
+        let likesMenu = UIMenu(title: "Likes", image: UIImage(systemName: "heart"), children: [mostPopular, lessPopular])
+
+        menuButtonItem.menu = UIMenu(title: "Sort By", children: [dateMenu, likesMenu])
+    }
+
+    func updateUIForMenu(menu: UIMenu, selectedActionTitle: String?) {
+        for case let action as UIAction in menu.children {
+            action.state = action.title == selectedActionTitle ? .on : .off
+        }
+    }
+
+    func updateUIForDateMenu() {
+        guard let menu = menuButtonItem.menu else { return }
+        
+        if let dateMenu = menu.children.first as? UIMenu {
+            updateUIForMenu(menu: dateMenu, selectedActionTitle: isSelectedDates ? "Newest First" : "Oldest First")
+        }
+
+        if let likesMenu = menu.children.last as? UIMenu {
+            updateUIForMenu(menu: likesMenu, selectedActionTitle: nil)
+        }
+    }
+
+    func updateUIForLikesMenu() {
+        guard let menu = menuButtonItem.menu else { return }
+
+        if let likesMenu = menu.children.last as? UIMenu {
+            updateUIForMenu(menu: likesMenu, selectedActionTitle: isSelectedLikes ? "Most Popular" : "Less Popular")
+        }
+
+        if let dateMenu = menu.children.first as? UIMenu {
+            updateUIForMenu(menu: dateMenu, selectedActionTitle: nil)
+        }
     }
 }
 
