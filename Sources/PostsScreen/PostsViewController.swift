@@ -1,14 +1,21 @@
 import UIKit
 
+// MARK: - Constants
+
+private enum Constants {
+    static let newestFirst = "Newest First"
+    static let oldestFirst = "Oldest First"
+    static let mostPopular = "Most Popular"
+    static let lessPopular = "Less Popular"
+}
+
 final class PostsViewController: UITableViewController, PostsViewModelDeledate {
 
     // MARK: - Outlets
 
-    @IBOutlet weak var menuButtonItem: UIBarButtonItem!
-    
-    let viewModel = PostsViewModel()
-    var isSelectedDates = false
-    var isSelectedLikes = false
+    @IBOutlet private weak var menuButtonItem: UIBarButtonItem!
+
+    private let viewModel = PostsViewModel()
 
     // MARK: - Lifecycle
 
@@ -30,29 +37,33 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
         tableView.reloadData()
     }
 
-    func configureButtonMenu() {
-        let newest = UIAction(title: "Newest First", image: UIImage(systemName: "arrow.up")) { [weak self] _ in
-            self?.isSelectedDates.toggle()
-            self?.updateUIForDateMenu()
-            self?.viewModel.sortByDateTapped(state: self!.isSelectedDates)
+    private func configureButtonMenu() {
+        let newest = UIAction(title: Constants.newestFirst, image: UIImage(systemName: "arrow.up")) { [weak self] _ in
+            guard let self else { return }
+
+            self.viewModel.filterButtonTapped(sortType: .date, isAscending: true)
+            self.updateUIForDateMenu(isAscending: true)
         }
 
-        let oldest = UIAction(title: "Oldest First", image: UIImage(systemName: "arrow.down")) { [weak self] _ in
-            self?.isSelectedDates.toggle()
-            self?.updateUIForDateMenu()
-            self?.viewModel.sortByDateTapped(state: self!.isSelectedDates)
+        let oldest = UIAction(title: Constants.oldestFirst, image: UIImage(systemName: "arrow.down")) { [weak self] _ in
+            guard let self else { return }
+
+            self.viewModel.filterButtonTapped(sortType: .date, isAscending: false)
+            self.updateUIForDateMenu(isAscending: false)
         }
 
-        let mostPopular = UIAction(title: "Most Popular", image: UIImage(systemName: "arrow.up")) { [weak self] _ in
-            self?.isSelectedLikes.toggle()
-            self?.updateUIForLikesMenu()
-            self?.viewModel.sortByLikesTapped(state: self!.isSelectedLikes)
+        let mostPopular = UIAction(title: Constants.mostPopular, image: UIImage(systemName: "arrow.up")) { [weak self] _ in
+            guard let self else { return }
+
+            self.viewModel.filterButtonTapped(sortType: .likes, isAscending: true)
+            self.updateUIForLikesMenu(isAscending: true)
         }
 
-        let lessPopular = UIAction(title: "Less Popular", image: UIImage(systemName: "arrow.down")) { [weak self] _ in
-            self?.isSelectedLikes.toggle()
-            self?.updateUIForLikesMenu()
-            self?.viewModel.sortByLikesTapped(state: self!.isSelectedLikes)
+        let lessPopular = UIAction(title: Constants.lessPopular, image: UIImage(systemName: "arrow.down")) { [weak self] _ in
+            guard let self else { return }
+
+            self.viewModel.filterButtonTapped(sortType: .likes, isAscending: false)
+            self.updateUIForLikesMenu(isAscending: false)
         }
 
         let dateMenu = UIMenu(title: "Date", image: UIImage(systemName: "calendar"), children: [newest, oldest])
@@ -61,17 +72,17 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
         menuButtonItem.menu = UIMenu(title: "Sort By", children: [dateMenu, likesMenu])
     }
 
-    func updateUIForMenu(menu: UIMenu, selectedActionTitle: String?) {
+    private func updateUIForMenu(menu: UIMenu, selectedActionTitle: String?) {
         for case let action as UIAction in menu.children {
             action.state = action.title == selectedActionTitle ? .on : .off
         }
     }
 
-    func updateUIForDateMenu() {
+    private func updateUIForDateMenu(isAscending: Bool) {
         guard let menu = menuButtonItem.menu else { return }
         
         if let dateMenu = menu.children.first as? UIMenu {
-            updateUIForMenu(menu: dateMenu, selectedActionTitle: isSelectedDates ? "Newest First" : "Oldest First")
+            updateUIForMenu(menu: dateMenu, selectedActionTitle: isAscending ? Constants.newestFirst : Constants.oldestFirst)
         }
 
         if let likesMenu = menu.children.last as? UIMenu {
@@ -79,11 +90,11 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
         }
     }
 
-    func updateUIForLikesMenu() {
+    private func updateUIForLikesMenu(isAscending: Bool) {
         guard let menu = menuButtonItem.menu else { return }
 
         if let likesMenu = menu.children.last as? UIMenu {
-            updateUIForMenu(menu: likesMenu, selectedActionTitle: isSelectedLikes ? "Most Popular" : "Less Popular")
+            updateUIForMenu(menu: likesMenu, selectedActionTitle: isAscending ? Constants.mostPopular : Constants.lessPopular)
         }
 
         if let dateMenu = menu.children.first as? UIMenu {

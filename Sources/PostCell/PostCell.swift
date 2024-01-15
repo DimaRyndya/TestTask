@@ -16,7 +16,7 @@ final class PostCell: UITableViewCell {
 
     weak var delegate: PostCellDelegate?
 
-    var post: PostModel?
+    private var post: PostModel?
 
     // MARK: - Lifecycle
 
@@ -54,7 +54,7 @@ final class PostCell: UITableViewCell {
         }
     }
 
-    func formatToDays(interval: Int) -> String {
+    private func formatToDays(interval: Int) -> String {
         let currentDate = Date()
         let calendar = Calendar.current
         let timestamp = TimeInterval(interval)
