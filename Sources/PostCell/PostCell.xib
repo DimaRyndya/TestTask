@@ -18,19 +18,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kk7-Sm-Ke0">
-                        <rect key="frame" x="16" y="107" width="326" height="17"/>
+                        <rect key="frame" x="16" y="45" width="326" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-b3-iuX">
-                        <rect key="frame" x="16" y="16" width="326" height="86"/>
+                        <rect key="frame" x="16" y="16" width="326" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BoL-t1-fYL" userLabel="Expandable Content Stack View">
-                        <rect key="frame" x="16" y="134" width="326" height="15"/>
+                        <rect key="frame" x="16" y="72" width="326" height="77"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="MYH-IW-1aq">
                                 <rect key="frame" x="0.0" y="0.0" width="326" height="15"/>
@@ -73,6 +73,20 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwq-uE-Y3R">
+                                <rect key="frame" x="0.0" y="42" width="326" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="dxn-xU-OOO"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Expand">
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemMintColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="expandButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="B80-zI-SVO"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -91,7 +105,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="expandableContentStackView" destination="BoL-t1-fYL" id="44C-RE-hzo"/>
+                <outlet property="expandButton" destination="gwq-uE-Y3R" id="2tg-wK-Uh3"/>
                 <outlet property="postLikesLabel" destination="jDN-A4-oWB" id="pAU-IY-11R"/>
                 <outlet property="postTextLabel" destination="kk7-Sm-Ke0" id="87l-kW-3l6"/>
                 <outlet property="postTimeLabel" destination="1u4-6D-55F" id="QB6-sH-jgc"/>
@@ -102,5 +116,11 @@
     </objects>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

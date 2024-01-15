@@ -8,53 +8,38 @@ final class PostCell: UITableViewCell {
 
     // MARK: - Outlets
 
-    @IBOutlet weak var postTitleLabel: UILabel!
-    @IBOutlet weak var postTextLabel: UILabel!
-    @IBOutlet weak var postLikesLabel: UILabel!
-    @IBOutlet weak var postTimeLabel: UILabel!
-    @IBOutlet weak var expandableContentStackView: UIStackView!
-    
+    @IBOutlet private weak var postTitleLabel: UILabel!
+    @IBOutlet private weak var postTextLabel: UILabel!
+    @IBOutlet private weak var postLikesLabel: UILabel!
+    @IBOutlet private weak var postTimeLabel: UILabel!
+    @IBOutlet private weak var expandButton: UIButton!
+
     weak var delegate: PostCellDelegate?
 
     var post: PostModel?
-
-    private lazy var expandButton: UIButton = {
-        let button = UIButton()
-        let action = UIAction { [weak self] _ in
-            self?.primaryButtonTapped()
-        }
-        
-        button.addAction(action, for: .primaryActionTriggered)
-        button.backgroundColor = .gray
-        button.layer.cornerRadius = 10
-
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: 35)
-        ])
-
-        return button
-    }()
 
     // MARK: - Lifecycle
 
     override func prepareForReuse() {
         super.prepareForReuse()
         post = nil
-        expandableContentStackView.removeArrangedSubview(expandButton)
+
     }
 
+    @IBAction func expandButtonTapped(_ sender: Any) {
+        post?.isExpanded.toggle()
+        configureExpandedState()
+
+        delegate?.postCellDidChangeHeight(self)
+    }
+    
     func configure(with post: PostModel) {
         self.post = post
         postTitleLabel.text = post.title
         postTextLabel.text = post.text
         postLikesLabel.text = String(post.likes)
         postTimeLabel.text = formatToDays(interval: post.timestamp)
-
-        print("\(postTitleLabel.text!)")
-
-        if post.numberOfLines > 2 {
-            expandableContentStackView.addArrangedSubview(expandButton)
-        }
+        expandButton.isHidden = post.numberOfLines <= 2
 
         configureExpandedState()
     }
@@ -67,13 +52,6 @@ final class PostCell: UITableViewCell {
             postTextLabel.numberOfLines = 2
             expandButton.setTitle("Expand", for: .normal)
         }
-    }
-
-    private func primaryButtonTapped() {
-        post?.isExpanded.toggle()
-        configureExpandedState()
-
-        delegate?.postCellDidChangeHeight(self)
     }
 
     func formatToDays(interval: Int) -> String {
