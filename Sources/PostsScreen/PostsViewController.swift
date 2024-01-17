@@ -15,6 +15,8 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
 
     @IBOutlet private weak var menuButtonItem: UIBarButtonItem!
 
+    // MARK: - Properties
+
     private let viewModel = PostsViewModel()
 
     // MARK: - Lifecycle
@@ -33,9 +35,13 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
 
     }
 
+    // MARK: - Public methods
+
     func reloadUI() {
         tableView.reloadData()
     }
+
+    // MARK: - Private methods
 
     private func configureButtonMenu() {
         let newest = UIAction(title: Constants.newestFirst, image: UIImage(systemName: "arrow.up")) { [weak self] _ in
@@ -103,9 +109,9 @@ final class PostsViewController: UITableViewController, PostsViewModelDeledate {
     }
 }
 
-extension PostsViewController: PostCellDelegate {
+// MARK: - PostCell Delegate
 
-    // MARK: - PostCell Delegate
+extension PostsViewController: PostCellDelegate {
 
     func postCellDidChangeHeight(_ cell: PostCell) {
         if let indexPath = tableView.indexPath(for: cell) {
@@ -116,7 +122,7 @@ extension PostsViewController: PostCellDelegate {
 
 extension PostsViewController {
 
-    // MARK: - TableView Data Source
+    // MARK: - PostsTableView Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -135,7 +141,7 @@ extension PostsViewController {
         return cell
     }
 
-    // MARK: - TableView Delegate
+    // MARK: - PostsTableView Delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPost = viewModel.posts[indexPath.row]

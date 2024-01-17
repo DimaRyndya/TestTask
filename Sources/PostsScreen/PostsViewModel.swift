@@ -4,11 +4,18 @@ protocol PostsViewModelDeledate: AnyObject {
     func reloadUI()
 }
 
+enum URLConstants {
+    static let baseURL = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/"
+    static let postsURL = "main.json"
+}
+
 enum PostsSortType {
     case date, likes
 }
 
 final class PostsViewModel {
+
+    // MARK: - Properties
 
     var posts: [PostModel] = []
 
@@ -16,12 +23,24 @@ final class PostsViewModel {
 
     private let networkService = NetworkService()
 
-    func viewDidLoad() {
-        networkService.fetchPosts { [weak self] response in
+    // MARK: - Public methods
+
+    func fetchPosts() {
+        guard let url = URL(string: URLConstants.baseURL + URLConstants.postsURL) else { return }
+        networkService.executeRequest(url: url, responseType: PostsRequestResponse.self) { [weak self] response in
             guard let self else { return }
-            self.posts = response
-            self.delegate?.reloadUI()
+            switch response.result {
+            case .success(let result):
+                self.posts = result.posts
+                delegate?.reloadUI()
+            case .failure(let error):
+                debugPrint(error)
+            }
         }
+    }
+
+    func viewDidLoad() {
+        fetchPosts()
     }
 
     func filterButtonTapped(sortType: PostsSortType, isAscending: Bool) {
@@ -32,6 +51,8 @@ final class PostsViewModel {
             sortByLikes(isAscending: isAscending)
         }
     }
+
+    // MARK: - Private methods
 
     private func sortByDate(isAscending: Bool) {
         if isAscending {

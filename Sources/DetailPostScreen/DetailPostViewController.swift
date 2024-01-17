@@ -21,6 +21,8 @@ final class DetailPostViewController: UIViewController {
         title = "Detail Post"
     }
 
+    // MARK: - Public methods
+
     func changeUI(for state: DetailPostViewModel.State) {
         switch state {
         case .loading:
@@ -30,7 +32,7 @@ final class DetailPostViewController: UIViewController {
             postTitleLabel.text = viewModel.postTitle
             postTextLabel.text = viewModel.postText
             postLikesLabel.text = viewModel.postLikes
-            postDateLabel.text = viewModel.getPostdate()
+            postDateLabel.text = viewModel.getPostDate()
             spinnerView?.removeFromSuperview()
         }
     }

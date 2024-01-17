@@ -26,13 +26,17 @@ final class PostCell: UITableViewCell {
 
     }
 
+    // MARK: - IBAction methods
+
     @IBAction func expandButtonTapped(_ sender: Any) {
         post?.isExpanded.toggle()
         configureExpandedState()
 
         delegate?.postCellDidChangeHeight(self)
     }
-    
+
+    // MARK: - Public methods
+
     func configure(with post: PostModel) {
         self.post = post
         postTitleLabel.text = post.title
@@ -43,6 +47,8 @@ final class PostCell: UITableViewCell {
 
         configureExpandedState()
     }
+
+    // MARK: - Private methods
 
     private func configureExpandedState() {
         if post?.isExpanded == true {

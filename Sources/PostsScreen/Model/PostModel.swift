@@ -2,6 +2,9 @@ import Foundation
 import UIKit
 
 final class PostModel {
+
+    // MARK: - Properties
+
     let id: Int
     let title: String
     let text: String
