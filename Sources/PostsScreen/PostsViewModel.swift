@@ -52,31 +52,11 @@ final class PostsViewModel: PostsViewModelInput {
     func filterButtonTapped(sortType: PostsSortType, isAscending: Bool) {
         switch sortType {
         case .date:
-            sortByDate(isAscending: isAscending)
+            posts.sort { ($0.timestamp > $1.timestamp) == isAscending }
+            output?.reloadUI()
         case .likes:
-            sortByLikes(isAscending: isAscending)
+            posts.sort { ($0.likes > $1.likes) == isAscending }
+            output?.reloadUI()
         }
-    }
-    
-    // MARK: - Private methods
-    
-    private func sortByDate(isAscending: Bool) {
-        if isAscending {
-            posts.sort { $0.timestamp > $1.timestamp }
-        } else {
-            posts.sort { $0.timestamp < $1.timestamp }
-        }
-        
-        output?.reloadUI()
-    }
-    
-    private func sortByLikes(isAscending: Bool) {
-        if isAscending {
-            posts.sort { $0.likes > $1.likes }
-        } else {
-            posts.sort { $0.likes < $1.likes }
-        }
-        
-        output?.reloadUI()
     }
 }

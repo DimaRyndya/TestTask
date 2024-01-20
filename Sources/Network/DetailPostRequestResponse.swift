@@ -6,5 +6,5 @@ struct DetailPostRequestResponse: Decodable {
         case post
     }
     
-    var post: DetailPostModel
+    var post: PostDetailsModel
 }

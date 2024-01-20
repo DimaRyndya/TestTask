@@ -7,6 +7,7 @@ private enum Constants {
     static let oldestFirst = "Oldest First"
     static let mostPopular = "Most Popular"
     static let lessPopular = "Less Popular"
+    static let estimateRowHeight = 44.0
 }
 
 final class PostsViewController: UITableViewController, PostsViewModelOutput {
@@ -24,8 +25,8 @@ final class PostsViewController: UITableViewController, PostsViewModelOutput {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 44
-        
+        tableView.estimatedRowHeight = Constants.estimateRowHeight
+
         let nib = UINib(nibName: "PostCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "PostCell")
         
@@ -137,25 +138,28 @@ extension PostsViewController {
         let post = viewModel.posts[indexPath.row]
         cell.configure(with: post)
         cell.delegate = self
-        
+
         return cell
     }
     
     // MARK: - PostsTableView Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedPost = viewModel.posts[indexPath.row]
         let storyboard = UIStoryboard(name: "PostStoryboard", bundle: nil)
-        let postVC = storyboard.instantiateViewController(withIdentifier: "Post") as! DetailPostViewController
-        
-        postVC.viewModel.changeUIForState = { [weak postVC] state in
-            postVC?.changeUI(for: state)
+        guard let postDetailsViewController = storyboard.instantiateViewController(withIdentifier: "Post") as? PostDetailsViewController else { return }
+        let selectedPost = viewModel.posts[indexPath.row]
+        let postDetailsModel = PostDetailsModel(
+            title: selectedPost.title,
+            likes: String(selectedPost.likes),
+            timestamp: selectedPost.timestamp)
+        let postDetailsViewModel = PostDetailsViewModel(postModel: postDetailsModel)
+
+        postDetailsViewController.viewModel = postDetailsViewModel
+        postDetailsViewController.viewModel.changeUIForState = { [weak postDetailsViewController] state in
+            postDetailsViewController?.changeUI(for: state)
         }
-        postVC.viewModel.loadPost(id: selectedPost.id)
-        postVC.viewModel.postTitle = selectedPost.title
-        postVC.viewModel.postLikes = String(selectedPost.likes)
-        postVC.viewModel.timestamp = selectedPost.timestamp
-        
-        navigationController?.pushViewController(postVC, animated: true)
+        postDetailsViewController.viewModel.loadPost(id: selectedPost.id)
+
+        navigationController?.pushViewController(postDetailsViewController, animated: true)
     }
 }
