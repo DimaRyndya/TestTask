@@ -79,7 +79,7 @@
 			path = Nibs;
 			sourceTree = "<group>";
 		};
-		1D43AA1F2ADD9590007ED903 /* DetailPostScreen */ = {
+		1D43AA1F2ADD9590007ED903 /* PostDetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
 				1D43AA282ADDAB4D007ED903 /* Model */,
@@ -87,7 +87,7 @@
 				1D43AA2D2AE5A182007ED903 /* PostDetailsViewModel.swift */,
 				1D43AA2F2AE5A640007ED903 /* PostStoryboard.storyboard */,
 			);
-			path = DetailPostScreen;
+			path = PostDetailsScreen;
 			sourceTree = "<group>";
 		};
 		1D43AA242ADD9FB3007ED903 /* Common */ = {
@@ -157,7 +157,7 @@
 				1D43AA242ADD9FB3007ED903 /* Common */,
 				1D4C73A72AD47E3D00E07768 /* Network */,
 				1DC54EF02ACDECA9002D4249 /* PostsScreen */,
-				1D43AA1F2ADD9590007ED903 /* DetailPostScreen */,
+				1D43AA1F2ADD9590007ED903 /* PostDetailsScreen */,
 				1DC54EF12ACDF249002D4249 /* PostCell */,
 			);
 			path = Sources;

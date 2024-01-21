@@ -8,6 +8,7 @@ private enum Constants {
     static let mostPopular = "Most Popular"
     static let lessPopular = "Less Popular"
     static let estimateRowHeight = 44.0
+    static let postCellIdentifier = "PostCell"
 }
 
 final class PostsViewController: UITableViewController, PostsViewModelOutput {
@@ -27,9 +28,9 @@ final class PostsViewController: UITableViewController, PostsViewModelOutput {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = Constants.estimateRowHeight
 
-        let nib = UINib(nibName: "PostCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "PostCell")
-        
+        let nib = UINib(nibName: Constants.postCellIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: Constants.postCellIdentifier)
+
         configureButtonMenu()
         viewModel.output = self
         viewModel.viewDidLoad()
@@ -134,7 +135,7 @@ extension PostsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell ?? PostCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.postCellIdentifier) as? PostCell ?? PostCell()
         let post = viewModel.posts[indexPath.row]
         cell.configure(with: post)
         cell.delegate = self

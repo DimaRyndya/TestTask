@@ -40,7 +40,6 @@ final class PostCell: UITableViewCell {
     @IBAction func expandButtonTapped(_ sender: Any) {
         post?.isExpanded.toggle()
         configureExpandedState()
-        
         delegate?.postCellDidChangeHeight(self)
     }
     
@@ -53,7 +52,6 @@ final class PostCell: UITableViewCell {
         postLikesLabel.text = String(post.likes)
         postTimeLabel.text = formatToDays(interval: post.timestamp)
         expandButton.isHidden = post.numberOfLines <= 2
-        
         configureExpandedState()
     }
     
