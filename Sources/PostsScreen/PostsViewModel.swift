@@ -19,6 +19,8 @@ protocol PostsViewModelOutput: AnyObject {
     func reloadUI()
 }
 
+// MARK: - ViewModel
+
 final class PostsViewModel: PostsViewModelInput {
     
     // MARK: - Properties

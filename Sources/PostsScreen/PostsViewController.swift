@@ -11,6 +11,8 @@ private enum Constants {
     static let postCellIdentifier = "PostCell"
 }
 
+// MARK: - ViewController
+
 final class PostsViewController: UITableViewController, PostsViewModelOutput {
     
     // MARK: - Outlets

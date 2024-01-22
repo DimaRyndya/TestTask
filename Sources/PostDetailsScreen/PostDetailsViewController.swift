@@ -1,5 +1,7 @@
 import UIKit
 
+// MARK: - ViewController
+
 final class PostDetailsViewController: UIViewController {
     
     // MARK: - Outlets
@@ -9,7 +11,9 @@ final class PostDetailsViewController: UIViewController {
     @IBOutlet var postTextLabel: UILabel!
     @IBOutlet var postLikesLabel: UILabel!
     @IBOutlet var postDateLabel: UILabel!
-    
+
+    // MARK: - Properties
+
     var viewModel: PostDetailsViewModel!
     let spinnerView = Bundle.main.loadNibNamed("SpinnerView", owner: PostDetailsViewController.self, options: nil)![0] as? SpinnerView
     

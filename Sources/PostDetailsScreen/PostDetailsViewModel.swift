@@ -1,5 +1,7 @@
 import Foundation
 
+// MARK: - ViewModel
+
 final class PostDetailsViewModel {
     
     enum State {

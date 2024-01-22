@@ -6,6 +6,8 @@ protocol PostCellDelegate: AnyObject {
     func postCellDidChangeHeight(_ cell: PostCell)
 }
 
+// MARK: - Cell
+
 final class PostCell: UITableViewCell {
     
     // MARK: - Outlets
